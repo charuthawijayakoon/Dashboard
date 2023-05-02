@@ -12,7 +12,6 @@ import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -21,23 +20,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
+import Toolbar from '@mui/material/Toolbar';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-import HomeIcon from '@mui/icons-material/Home';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
 // Importing Images ============================================================================================
-import poster from '../Img/poster.png';
-import Girl from '../Img/Girl.png';
 import controlcenterlogo from '../Img/controlcenterlogo.png';
+import Girl from '../Img/Girl.png';
 
 // Importing Icons =============================================================================================
-
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PolicyIcon from '@mui/icons-material/Policy';
@@ -45,9 +39,19 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LanIcon from '@mui/icons-material/Lan';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import MessageIcon from '@mui/icons-material/Message';
+import HomeIcon from '@mui/icons-material/Home';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import UpdateIcon from '@mui/icons-material/Update';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 // Importing 7-1 architechture sass files on main.scss ==========================================================
 import '../SASS/main.scss';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -57,13 +61,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
-
-
-
 // Import Drawer Functionalities ===============================================================================
 const drawerWidth = 240;
-
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
@@ -82,7 +81,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
     marginLeft: 0,
   }),
 }));
-
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
@@ -112,15 +110,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -167,7 +162,7 @@ const Search = styled('div')(({ theme }) => ({
         },
       },
     },
-  }));
+}));
 
 export const DetailPage = () => {
     const theme = useTheme();
@@ -180,6 +175,8 @@ export const DetailPage = () => {
     const handleDrawerClose = () => {
       setOpen(false);
     };
+
+    const drawerRightWidth = 50;
   
     return (
       <Box sx={{ display: 'flex' }}>
@@ -192,6 +189,18 @@ export const DetailPage = () => {
             </IconButton>
             <Typography variant="h6" noWrap component="div">
               {/* Persistent drawer */}
+              <Stack className='header--content-components' spacing={4} direction='row'>
+                <Stack className='branch--container' direction='row' spacing={1}>
+                  <div className='branch--icon'><LanIcon /></div>
+                  <div className='branch--text'>No Available Branch</div>
+                </Stack>
+                <Stack className='notification-avatar--content' spacing={2} direction='row'>
+                  <div className='notification--content'><NotificationsNoneIcon fontSize='large' /></div>
+                  <div className='avatar--content'>
+                    <Avatar alt="Remy Sharp" src={Girl} sx={{ width: 48, height: 48 }}/>
+                  </div>
+                </Stack>
+              </Stack>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -213,6 +222,56 @@ export const DetailPage = () => {
                 </ListItemButton>
               </ListItem>
             ))}
+            {/* <ul className='icons-drawer--left'>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><HomeIcon/></div>
+                  <div>Home</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><BorderColorIcon/></div>
+                  <div>Underwriting</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><AttachMoneyIcon/></div>
+                  <div>Finance</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><UpdateIcon/></div>
+                  <div>Re-Insuarance</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><PolicyIcon/></div>
+                  <div>Claims</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><SettingsIcon/></div>
+                  <div>System Administration</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><AddShoppingCartIcon/></div>
+                  <div>Sales & Marketing</div>
+                </Stack>
+              </li>
+              <li>
+                <Stack className='drawer-icon--left' direction='row' spacing={1}>
+                  <div><AddTaskIcon/></div>
+                  <div>Approvals</div>
+                </Stack>
+              </li>
+            </ul> */}
           </List>
         </Drawer>
         {/* ==================================================================================================================== */}
@@ -242,13 +301,17 @@ export const DetailPage = () => {
                             </Stack>
                             <div className="header-typography--search">
                               <Search className='search-criteria'>
+                                  {/* <StyledInputBase className='input--searchbar'/> */}
                                   <StyledInputBase className='input--searchbar' placeholder="Search" inputProps={{ 'aria-label': 'search' }} />
-                                  <SearchIconWrapper className='search-grey--container'>
-                                    <Stack className='search-icon--container' direction='row' spacing={1}>
-                                      <div className='search--criteria-icon'><SearchIcon /></div>
-                                      <div className='search--criteria-text'>Search</div>
+                                    <Stack className='search-container--placeholder' direction='row' spacing={0}>
+                                        <div className='search--criteria-placeholder'></div>
                                     </Stack>
-                                  </SearchIconWrapper>
+                                    <SearchIconWrapper className='search-grey--container'>
+                                      <Stack className='search-icon--container' direction='row' spacing={1}>
+                                        <div className='search--criteria-icon'><SearchIcon /></div>
+                                        <div className='search--criteria-text'>Search</div>
+                                      </Stack>
+                                    </SearchIconWrapper>
                               </Search>
                             </div>
                           </Stack>
@@ -282,7 +345,7 @@ export const DetailPage = () => {
                                             <Stack className='title-iconexpand--content' spacing={1} direction='column'>
                                                 <Stack className='colorcard-title--text' spacing={2} direction='column'>
                                                     <div className="title-text--line1">Policy Center</div>
-                                                    <div className="title-text--line2">Allow you to access the Policy Center.</div>
+                                                    <div className="title-text--line2">Allow you to access the Policy Center module.</div>
                                                 </Stack>
                                                 <Stack className='expand-textarrow--content' spacing={0.5} direction='row'>
                                                     <Stack className='expand-text'>Explore</Stack>
@@ -330,7 +393,7 @@ export const DetailPage = () => {
                                             <Stack className='title-iconexpand--content' spacing={1} direction='column'>
                                                 <Stack className='colorcard-title--text' spacing={2} direction='column'>
                                                     <div className="title-text--line1">Sales and Marketing</div>
-                                                    <div className="title-text--line2">Allow you to access the Sales and Marketing module.</div>
+                                                    <div className="title-text--line2">Allow you to access the Sales and Marketing.</div>
                                                 </Stack>
                                                 <Stack className='expand-textarrow--content' spacing={0.5} direction='row'>
                                                     <Stack className='expand-text'>Explore</Stack>
@@ -371,7 +434,16 @@ export const DetailPage = () => {
 
         </Main>
 
-        <Grid className='drawer--right'> </Grid>
+        <Grid>
+          <Box sx={{ display: 'flex' }}>
+            <Drawer sx={{ width: drawerRightWidth, flexShrink: 0, '& .MuiDrawer-paper': { width: drawerRightWidth, boxSizing: 'border-box', }, }} variant="permanent" anchor="right">
+              <List>
+                <ul className='drawer-left--icon'><MessageIcon fontSize='large' /></ul>
+              </List>
+              <Toolbar />
+            </Drawer>
+          </Box>
+        </Grid>
 
         {/* <AppBar className='footer-container' position="fixed">
           <Toolbar>
@@ -381,6 +453,7 @@ export const DetailPage = () => {
         </AppBar> */}
 
       </Box>
+
     );
   }
   

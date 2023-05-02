@@ -28,7 +28,7 @@
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.25) !important;
     border-radius: 50px !important;
     align-items: end !important;
-    width: 70%;
+    width: 300px;
 }
 
 .typography-Control{
@@ -54,13 +54,32 @@
     // letter-spacing: -0.02em;
 }
 
+.search-grey--container{
+    padding: 0 4px !important;
+}
+
 .typography-Center-Dashboard{
-    color: #747570 !important;
+    color: $footer-color !important;
 }
 
 .search-criteria{
-    padding-right: 100%;
-    // display: flex !important;
+    // padding-right: 110%;
+    padding-left: 0 !important;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-container--placeholder{
+    padding-right: 80%;
+    font-weight: 400;
+    color: $footer-color;
+}
+
+.search--criteria-placeholder{
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    padding-left: 0px;
 }
 
 .search-icon--container{
