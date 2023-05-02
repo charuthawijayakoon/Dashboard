@@ -1,0 +1,21 @@
+// Importing 7-1 architechture sass files
+
+//Importing Abstracts
+@import '../SASS/abstracts/variables.scss';             
+@import '../SASS/abstracts//mixins.scss';
+
+//Importing Base
+@import '../SASS/base/reset.scss';                      
+
+// Importing Components
+@import '../SASS/components/footer.scss';
+@import '../SASS/components/header.scss';
+@import '../SASS/components/drawer.scss';
+@import '../SASS/components/cards.scss';
+
+//Importing Layouts
+@import '../SASS/layout/grid.scss';                     
+
+//Importing Pages
+@import '../SASS/pages/detailsPage.scss';               
+

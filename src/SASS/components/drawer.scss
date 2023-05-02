@@ -1,0 +1,23 @@
+.drawer--left {
+    background-color: $border-color !important;
+    width: 50%;
+    margin: 0;
+    z-index: 999;
+}
+
+.drawer--right {
+    background-color: $ternary-color;
+    width: 10%;
+    margin: 0;
+    z-index: 999;
+    // position: fixed !important;
+}
+
+.drawer--left-blue{
+    background-color: $border-color !important;
+    color: $ternary-color !important;
+}
+
+.icon-drawer{
+    color: $ternary-color !important;
+}

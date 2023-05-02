@@ -1,0 +1,32 @@
+.title-text--line1{
+    font-size: $font-small !important;
+    font-weight: 600;
+    color: $dark-color;
+    display: flex !important;
+    padding: 16px 32px 0 32px;
+}
+
+.title-text--line2{
+    font-size: $font-x-small;
+    color: $footer-color;
+    display: flex !important;
+    padding: 1px 32px;
+    text-align: initial;
+}
+
+.expand-textarrow--content{
+    display: flex !important;
+    align-items: center;
+    padding: 6px 32px;
+    .expand-text{
+        color: $primary-color;
+        font-weight: bold;
+        font-size: 12px !important;
+        font-family: 'Inter', sans-serif !important;
+        cursor: pointer;
+    }
+    .expand-forward--icon{
+        color: $primary-color !important;
+        cursor: pointer;
+    }
+}

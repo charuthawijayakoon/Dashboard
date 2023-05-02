@@ -1,0 +1,28 @@
+//Fonts====================================================================================
+//Font-Family
+$font-family: 'Roboto', sans-serif;
+//Importing the "Roboto" font from web
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto:wght@100&display=swap';
+//Font-Sizes
+$font-x-big: 56px;
+$font-big: 24px;
+$font-medium: 20px;
+$font-small: 16px;
+$font-x-small: 14px;
+
+//Colors===================================================================================
+$border-color: #22316C;
+$primary-color: #2D4190;
+$ternary-color: #FFFFFF;
+$dark-color: #272525;
+$back-color: #E2E2E2;
+$footer-color: #747570;
+
+//Alignments===============================================================================
+$padding-normal: 24px;
+
+//Border===================================================================================
+
+$border-radius: 8px;
+$full-curve-radius: 100px;

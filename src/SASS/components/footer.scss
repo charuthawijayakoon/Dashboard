@@ -1,0 +1,14 @@
+.footer-container {
+    // padding: 240px 380px !important;
+    background-color: $ternary-color !important;
+    color: $footer-color !important;
+    position: fixed !important;
+    width: 100% !important;
+    // bottom: 0 !important;
+    top: 560px !important;
+}
+
+footer{
+    font-size: $font-x-small !important;
+    padding: $padding-normal !important;
+}
