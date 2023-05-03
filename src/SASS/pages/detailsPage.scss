@@ -7,10 +7,9 @@
 }
 
 .icon--card-logo{
-    color: #C0C6DE !important;
+    color: $icon-color !important;
     font-size: 100px !important;
     display: flex !important;
-    // padding-left: 75%;
     margin-top: -30px !important;
     margin-left: 80%;
 }
@@ -32,7 +31,7 @@
 }
 
 .heading--card:hover{
-    background-color: $border-color;
+    background-color: $border-color !important;
     .title-text--line1 {
         color: $ternary-color;
     }
@@ -55,7 +54,7 @@
 }
 
 .branch--container{
-    background-color: #218380;
+    background-color: $LAN-color;
     color: $ternary-color;
     display: flex;
     flex-direction: row;
@@ -63,7 +62,7 @@
     align-items: center;
     padding: 0px 8px;
     gap: 8px;
-    border: 1px solid #218380;
+    border: 1px solid $LAN-color;
     border-radius: 50px;
 }
 
@@ -71,7 +70,17 @@
     color: $primary-color !important;
     font-size: 48px !important;
 }
+
 .notification-avatar--content{
     display: flex;
     align-items: center;
+}
+
+.branch--icon{
+    display: flex;
+}
+
+.header--space-between{
+    justify-content: space-between;
+    width: 96%;
 }

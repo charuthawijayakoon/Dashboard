@@ -14,18 +14,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+// import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import Toolbar from '@mui/material/Toolbar';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import MailIcon from '@mui/icons-material/Mail';
 
 // Importing Images ============================================================================================
 import controlcenterlogo from '../Img/controlcenterlogo.png';
@@ -48,10 +49,10 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import UpdateIcon from '@mui/icons-material/Update';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddTaskIcon from '@mui/icons-material/AddTask';
+import Badge, { BadgeProps } from '@mui/material/Badge';
 
 // Importing 7-1 architechture sass files on main.scss ==========================================================
 import '../SASS/main.scss';
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -113,12 +114,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 }
 
 // Importing Search Criteria  ===================================================================================
@@ -164,17 +159,23 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
+// Importing the Badge  ===================================================================================
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: 8,
+    top: 9,
+    border: `-1px solid ${theme.palette.background.paper}`,
+    padding: '8px',
+  },
+}));
+
 export const DetailPage = () => {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-  
-    const handleDrawerOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleDrawerClose = () => {
-      setOpen(false);
-    };
+
+    const toggleButton = () => {
+      setOpen(preState => !preState);
+    }
 
     const drawerRightWidth = 50;
   
@@ -183,21 +184,23 @@ export const DetailPage = () => {
         <CssBaseline />
 
         <AppBar className='header--white' position="fixed" open={open}>
-          <Toolbar>
-            <IconButton aria-label="open drawer" onClick={handleDrawerOpen} edge="start" sx={{ mr: 2, ...(open && { display: 'none' }) }} >
+          <Toolbar className='header--space-between'>
+            <IconButton className='drawer-menu--toggler' onClick={toggleButton}>
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              {/* Persistent drawer */}
               <Stack className='header--content-components' spacing={4} direction='row'>
                 <Stack className='branch--container' direction='row' spacing={1}>
                   <div className='branch--icon'><LanIcon /></div>
                   <div className='branch--text'>No Available Branch</div>
                 </Stack>
                 <Stack className='notification-avatar--content' spacing={2} direction='row'>
-                  <div className='notification--content'><NotificationsNoneIcon fontSize='large' /></div>
+                  <StyledBadge className='notification--content' badgeContent={4} color="error">
+                    {/* <MailIcon color="action" /> */}
+                    <NotificationsNoneIcon fontSize='large' />
+                  </StyledBadge>
                   <div className='avatar--content'>
-                    <Avatar alt="Remy Sharp" src={Girl} sx={{ width: 48, height: 48 }}/>
+                    <Avatar alt="Remy Sharp" src={Girl} sx={{ width: 36, height: 36 }}/>
                   </div>
                 </Stack>
               </Stack>
@@ -206,72 +209,34 @@ export const DetailPage = () => {
         </AppBar>
 
         <Drawer className='hamburger-menu--drawer' sx={{ width: drawerWidth, flexShrink: 0 }} variant="persistent" anchor="left" open={open} >
-          <DrawerHeader className='drawer--left-blue'> 
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'ltr' ? ( <ChevronLeftIcon /> ) : ( <ChevronRightIcon /> )}
-            </IconButton>
-          </DrawerHeader>
+          <Stack className="logo-circle" direction='row' spacing={1}>
+              <div className="logo-circle--1"></div>
+              <div className="logo-circle--2"></div>
+              <div className="logo-circle--3"></div>
+          </Stack>
+          <Stack className="profile-section" direction='column' spacing={1}>
+              <div className="profile-avatar"><Avatar alt="Remy Sharp" src={Girl} sx={{ width: 58, height: 58 }}/></div>
+              <div className="profile-name">Logan Lee</div>
+              <div className="profile-email">Logan.lee@companyname.com</div>
+          </Stack>
+          <Stack className="company-section" direction='column' spacing={1}>
+              <div className="company-post">ADMIN</div>
+              <div className="company-name">ABU Corp. Backend App</div>
+          </Stack>
           <List className='drawer--left-blue'>
             {['Home', 'Underwriting', 'Finance', 'Re-Insuarance', 'Claims', 'System Administration', 'Sales & Marketing', 'Approvals'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton  className='drawer--menu-item'>
                   <ListItemIcon className='icon-drawer'>
-                    {index % 2 === 0 ? <HomeIcon /> : <BorderColorIcon  />}
+                    {[<HomeIcon />, <BorderColorIcon />, <AttachMoneyIcon />, <UpdateIcon />, <PolicyIcon />, <SettingsIcon />, <AddShoppingCartIcon />, <AddTaskIcon />][index]}
                   </ListItemIcon>
                   <ListItemText primary={text} />
+                  <ListItemIcon className='icon-drawer'>
+                    {[<KeyboardArrowDownIcon />, <KeyboardArrowDownIcon />, <KeyboardArrowDownIcon />, <KeyboardArrowDownIcon />, <KeyboardArrowDownIcon />, <KeyboardArrowDownIcon />, <KeyboardArrowDownIcon />, <div className='notification-number--circle'>3</div>  ][index]}
+                  </ListItemIcon>
                 </ListItemButton>
               </ListItem>
             ))}
-            {/* <ul className='icons-drawer--left'>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><HomeIcon/></div>
-                  <div>Home</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><BorderColorIcon/></div>
-                  <div>Underwriting</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><AttachMoneyIcon/></div>
-                  <div>Finance</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><UpdateIcon/></div>
-                  <div>Re-Insuarance</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><PolicyIcon/></div>
-                  <div>Claims</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><SettingsIcon/></div>
-                  <div>System Administration</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><AddShoppingCartIcon/></div>
-                  <div>Sales & Marketing</div>
-                </Stack>
-              </li>
-              <li>
-                <Stack className='drawer-icon--left' direction='row' spacing={1}>
-                  <div><AddTaskIcon/></div>
-                  <div>Approvals</div>
-                </Stack>
-              </li>
-            </ul> */}
           </List>
         </Drawer>
         {/* ==================================================================================================================== */}
@@ -281,10 +246,6 @@ export const DetailPage = () => {
             <Stack className='grid--structure' spacing={0} direction='row'>
 
                 <Stack  className='middle-grid--structure' spacing={0} direction='column'>
-
-                    {/* <Grid>
-                        <div className='header-container'></div>
-                    </Grid> */}
 
                     <Grid>
                         <div className='dashboard-header--container'>
@@ -302,7 +263,7 @@ export const DetailPage = () => {
                             <div className="header-typography--search">
                               <Search className='search-criteria'>
                                   {/* <StyledInputBase className='input--searchbar'/> */}
-                                  <StyledInputBase className='input--searchbar' placeholder="Search" inputProps={{ 'aria-label': 'search' }} />
+                                  <StyledInputBase className='input--searchbar' placeholder="Search" inputProps={{ 'aria-label': 'search', 'padding-left': '0' }} />
                                     <Stack className='search-container--placeholder' direction='row' spacing={0}>
                                         <div className='search--criteria-placeholder'></div>
                                     </Stack>
