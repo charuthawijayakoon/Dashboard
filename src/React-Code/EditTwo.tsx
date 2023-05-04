@@ -14,23 +14,23 @@ import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-// import Divider from '@mui/material/Divider';
+import { Divider } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-// import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import Toolbar from '@mui/material/Toolbar';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import MailIcon from '@mui/icons-material/Mail';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 // Importing Images ============================================================================================
 import controlcenterlogo from '../Img/controlcenterlogo.png';
-import Girl from '../Img/Girl.png';
+import charu from '../Img/charu.jpg';
 
 // Importing Icons =============================================================================================
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -50,6 +50,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import Badge, { BadgeProps } from '@mui/material/Badge';
+import Fab from '@mui/material/Fab';
 
 // Importing 7-1 architechture sass files on main.scss ==========================================================
 import '../SASS/main.scss';
@@ -62,7 +63,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-// Import Drawer Functionalities ===============================================================================
+// Import Drawer Functionalities ================================================================================
 const drawerWidth = 240;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
@@ -159,7 +160,17 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
-// Importing the Badge  ===================================================================================
+// Importing the Footer  ========================================================================================
+const StyledFab = styled(Fab)({
+  position: 'absolute',
+  zIndex: 1,
+  top: -30,
+  left: 0,
+  right: 0,
+  margin: '0 auto',
+});
+
+// Importing the Badge  =========================================================================================
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: 8,
@@ -200,7 +211,7 @@ export const DetailPage = () => {
                     <NotificationsNoneIcon fontSize='large' />
                   </StyledBadge>
                   <div className='avatar--content'>
-                    <Avatar alt="Remy Sharp" src={Girl} sx={{ width: 36, height: 36 }}/>
+                    <Avatar alt="Remy Sharp" src={charu} sx={{ width: 36, height: 36 }}/>
                   </div>
                 </Stack>
               </Stack>
@@ -209,13 +220,13 @@ export const DetailPage = () => {
         </AppBar>
 
         <Drawer className='hamburger-menu--drawer' sx={{ width: drawerWidth, flexShrink: 0 }} variant="persistent" anchor="left" open={open} >
-          <Stack className="logo-circle" direction='row' spacing={1}>
+          <Stack className="logo-circle" direction='row' spacing={0.3}>
               <div className="logo-circle--1"></div>
               <div className="logo-circle--2"></div>
               <div className="logo-circle--3"></div>
           </Stack>
           <Stack className="profile-section" direction='column' spacing={1}>
-              <div className="profile-avatar"><Avatar alt="Remy Sharp" src={Girl} sx={{ width: 58, height: 58 }}/></div>
+              <div className="profile-avatar"><Avatar alt="Remy Sharp" src={charu} sx={{ width: 58, height: 58 }}/></div>
               <div className="profile-name">Logan Lee</div>
               <div className="profile-email">Logan.lee@companyname.com</div>
           </Stack>
@@ -224,7 +235,7 @@ export const DetailPage = () => {
               <div className="company-name">ABU Corp. Backend App</div>
           </Stack>
           <List className='drawer--left-blue'>
-            {['Home', 'Underwriting', 'Finance', 'Re-Insuarance', 'Claims', 'System Administration', 'Sales & Marketing', 'Approvals'].map((text, index) => (
+            {['Home', 'Underwriting', 'Finance', 'Insuarance', 'Claims', 'System Administration', 'Sales & Marketing', 'Approvals'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton  className='drawer--menu-item'>
                   <ListItemIcon className='icon-drawer'>
@@ -239,7 +250,7 @@ export const DetailPage = () => {
             ))}
           </List>
         </Drawer>
-        {/* ==================================================================================================================== */}
+        {/* ================================================================================================= */}
 
         <Main open={open} className='side--borders'>
 
@@ -385,9 +396,21 @@ export const DetailPage = () => {
 
                     </Grid>
     
-                    <Grid className="footer-container">
+                    {/* <Grid className="footer-container">
                         <footer>© 2010-2022 Informatics International Limited. All Rights Reserved</footer>
-                    </Grid>
+                    </Grid> */}
+
+                    <React.Fragment>
+                      <CssBaseline />
+                      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+                        <Toolbar className="footer-container">
+                          <Typography className='footer-ttpography' variant="h5" gutterBottom noWrap component="div" sx={{ p: 2, pb: 0 }} >
+                            © 2010-2022 Informatics International Limited. All Rights Reserved
+                          </Typography>
+                          <Box sx={{ flexGrow: 1 }} />
+                        </Toolbar>
+                      </AppBar>
+                    </React.Fragment>
 
                 </Stack>               
 
@@ -398,20 +421,14 @@ export const DetailPage = () => {
         <Grid>
           <Box sx={{ display: 'flex' }}>
             <Drawer sx={{ width: drawerRightWidth, flexShrink: 0, '& .MuiDrawer-paper': { width: drawerRightWidth, boxSizing: 'border-box', }, }} variant="permanent" anchor="right">
-              <List>
-                <ul className='drawer-left--icon'><MessageIcon fontSize='large' /></ul>
+              <List className='drawer-right--icon'>
+                <ul><MessageIcon fontSize='large' /></ul>
               </List>
+              <Divider/>
               <Toolbar />
             </Drawer>
           </Box>
         </Grid>
-
-        {/* <AppBar className='footer-container' position="fixed">
-          <Toolbar>
-            <Typography variant="h6" noWrap component="div">© 2010-2022 Informatics International Limited. All Rights Reserved</Typography>
-            <footer>© 2010-2022 Informatics International Limited. All Rights Reserved</footer>
-          </Toolbar>
-        </AppBar> */}
 
       </Box>
 

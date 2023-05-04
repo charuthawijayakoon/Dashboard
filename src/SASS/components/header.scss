@@ -91,6 +91,7 @@
     color: $primary-color !important;
     display: flex !important;
     align-items: center !important;
+    cursor: pointer !important;
 }
 
 .search--criteria-icon{
@@ -100,4 +101,8 @@
 
 .input--searchbar{
     padding-left: 15% !important;
+}
+
+.notification--content, .avatar--content{
+    cursor: pointer !important;
 }
